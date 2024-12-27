@@ -187,6 +187,11 @@ const alpacaPage = () => {
         else setLeg(leg + 1);
     }
 
+    const changeMouth = () => {
+        if (mouth === mouthType.length - 1) setMouth(mouth * 0);
+        else setMouth(mouth + 1);
+    }
+
     const changeNeck = () => {
         if (neck === neckType.length - 1) setNeck(neck * 0);
         else setNeck(neck + 1);
@@ -221,6 +226,11 @@ const alpacaPage = () => {
                         className="absolute top-1 right-2"
                         src={ hairType[hair] }
                         alt="alpaca hair" />
+
+                    <img 
+                        className="absolute bottom-0"
+                        src={ legType[leg] }
+                        alt="alpaca leg" />
                 </div>
                 <div>
                     <div>
@@ -229,7 +239,7 @@ const alpacaPage = () => {
                             <button onClick={ changeHair }>Hair</button>
                             <button onClick={ changeEars }>Ears</button>
                             <button onClick={ changeEyes }>Eyes</button>
-                            <button>Mouth</button>
+                            <button onClick={ changeMouth }>Mouth</button>
                             <button onClick={ changeNeck }>Neck</button>
                             <button onClick={ changeLeg }>Leg</button>
                             <button onClick={ changeAcc }>Accessories</button>
