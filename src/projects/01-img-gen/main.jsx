@@ -1,3 +1,4 @@
+// Background images
 import blue50 from "./assets/blue50.png"
 import blue60 from "./assets/blue60.png"
 import blue70 from "./assets/blue50.png"
@@ -16,6 +17,26 @@ import red70 from "./assets/red70.png"
 import yellow50 from "./assets/yellow50.png"
 import yellow60 from "./assets/yellow60.png"
 import yellow70 from "./assets/yellow70.png"
+
+// Accessories
+import earings from "./assets/accessories/earings.png"
+import flower from "./assets/accessories/flower.png"
+import glasses from "./assets/accessories/glasses.png"
+import headphone from "./assets/accessories/headphone.png"
+
+// Ears
+import normalEars from "./assets/ears/default.png"
+import backwards from "./assets/ears/tilt-backward.png"
+import forward from "./assets/ears/tilt-forward.png"
+
+// Eyes
+import normalEyes from "./assets/eyes/default.png"
+import angryEyes from "./assets/eyes/angry.png"
+import naughtyEyes from "./assets/eyes/naughty.png"
+import pandaEyes from "./assets/eyes/panda.png"
+import smartEyes from "./assets/eyes/smart.png"
+import starEyes from "./assets/eyes/star.png"
+
 import { useState } from "react"
 
 const alpacaPage = () => {
@@ -40,29 +61,56 @@ const alpacaPage = () => {
         yellow70,
     ]
 
-    // console.log(bgImages[0])
+    const accessories = [
+        earings,
+        flower,
+        glasses,
+        headphone
+    ]
+
+    // console.log(bgImages.length - 1)
     const [bgImg, setBgImg] = useState(0);
-    console.log(bgImg);
+    const [acc, setAcc] = useState(0);
+
     const changeBg = () => {
-        if (bgImg === 17) setBgImg(bgImg - 17);
+        if (bgImg === bgImages.length - 1) setBgImg(bgImg * 0);
         else setBgImg(bgImg + 1);
     };
+    const changeAcc = () => {
+        if (acc === accessories.length - 1) setAcc(acc * 0);
+        else setAcc(acc + 1);
+    }
 
     return (
         <>
             <h1 className="text-3xl">ALPACA GENERATOR</h1>
             <div className="">
                 <div className="w-60 md:w-80 relative">
+                    {/* Background Image */}
                     <img 
                         className="w-full"
                         src={bgImages[bgImg]}
                         alt="background image" />
-                        <img src="" alt="" />
+                        
+                    {/* Accessory */}
+                    <img 
+                        className="absolute top-2"
+                        src={ accessories[acc] } 
+                        alt="alpaca accessories" />
                 </div>
                 <div>
                     <div>
                         <h4>ACCESSORIZE THE ALPACA</h4>
-                        <button onClick={ changeBg }>Background</button>
+                        <div>
+                            <button>Hair</button>
+                            <button>Ears</button>
+                            <button>Eyes</button>
+                            <button>Mouth</button>
+                            <button>Neck</button>
+                            <button>Leg</button>
+                            <button onClick={ changeAcc }>Accessories</button>
+                            <button onClick={ changeBg }>Background</button>
+                        </div>
                     </div>
                     <div>
                         <h4>STYLE</h4>
