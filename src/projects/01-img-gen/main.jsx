@@ -68,17 +68,36 @@ const alpacaPage = () => {
         headphone
     ]
 
+    const earType = [
+        normalEars,
+        backwards,
+        forward
+    ]
+
     // console.log(bgImages.length - 1)
     const [bgImg, setBgImg] = useState(0);
     const [acc, setAcc] = useState(0);
+    const [ears, setEars] = useState(0);
+    const [eyes, setEyes] = useState(0);
 
     const changeBg = () => {
         if (bgImg === bgImages.length - 1) setBgImg(bgImg * 0);
         else setBgImg(bgImg + 1);
     };
+
     const changeAcc = () => {
         if (acc === accessories.length - 1) setAcc(acc * 0);
         else setAcc(acc + 1);
+    }
+
+    const changeEars = () => {
+        if (ears === earType.length - 1) setEars(ears * 0);
+        else setEars(ears + 1);
+    }
+
+    const changeEyes = () => {
+        if (eyes === eyesType.length - 1) setEyes(eyes * 0);
+        else setEyes(eyes + 1);
     }
 
     return (
@@ -86,25 +105,30 @@ const alpacaPage = () => {
             <h1 className="text-3xl">ALPACA GENERATOR</h1>
             <div className="">
                 <div className="w-60 md:w-80 relative">
-                    {/* Background Image */}
                     <img 
                         className="w-full"
                         src={bgImages[bgImg]}
                         alt="background image" />
-                        
-                    {/* Accessory */}
+
                     <img 
-                        className="absolute top-2"
+                        className="absolute top-0"
                         src={ accessories[acc] } 
                         alt="alpaca accessories" />
+                    
+                    <img 
+                        className="absolute top-0"
+                        src= { earType[ears] } 
+                        alt="alpaca ears" />
+
+                    <img src="" alt="" />
                 </div>
                 <div>
                     <div>
                         <h4>ACCESSORIZE THE ALPACA</h4>
                         <div>
                             <button>Hair</button>
-                            <button>Ears</button>
-                            <button>Eyes</button>
+                            <button onClick={ changeEars }>Ears</button>
+                            <button onClick={ changeEyes }>Eyes</button>
                             <button>Mouth</button>
                             <button>Neck</button>
                             <button>Leg</button>
