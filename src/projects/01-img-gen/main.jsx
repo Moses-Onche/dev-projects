@@ -50,13 +50,14 @@ const alpacaPage = () => {
 
     return (
         <>
-            <h1>ALPACA GENERATOR</h1>
+            <h1 className="text-3xl">ALPACA GENERATOR</h1>
             <div className="">
-                <div className="w-60 border-2 border-red-500">
+                <div className="w-60 md:w-80 relative">
                     <img 
                         className="w-full"
                         src={bgImages[bgImg]}
                         alt="background image" />
+                        <img src="" alt="" />
                 </div>
                 <div>
                     <div>
