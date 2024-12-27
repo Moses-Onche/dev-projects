@@ -8,7 +8,7 @@ function App() {
     <>
       <ul>
         <li>
-          <a href={ImgGen}>Alpaca Image Generator</a>
+          {/* <a href={ImgGen}>Alpaca Image Generator</a> */}
         </li>
       </ul>
       <ImgGen />
