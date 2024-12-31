@@ -26,8 +26,8 @@ import headphone from "./assets/accessories/headphone.png"
 
 // Ears
 import normalEars from "./assets/ears/default.png"
-import backwards from "./assets/ears/tilt-backward.png"
-import forward from "./assets/ears/tilt-forward.png"
+import backwardEars from "./assets/ears/tilt-backward.png"
+import forwardEars from "./assets/ears/tilt-forward.png"
 
 // Eyes
 import normalEyes from "./assets/eyes/default.png"
@@ -70,189 +70,239 @@ import thickNeck from "./assets/neck/thick.png"
 import { useState } from "react"
 
 const alpacaPage = () => {
-    const bgImages = [
-        blue50,
-        blue60,
-        blue70,
-        darkblue30,
-        darkblue50,
-        darkblue70,
-        green50,
-        green60,
-        green70,
-        grey40,
-        grey70,
-        grey80,
-        red50,
-        red60,
-        red70,
-        yellow50,
-        yellow60,
-        yellow70,
+    const parts = [
+        {
+            names: [
+                {title: "Default", image: normalHair,id: 1},
+                {title: "Bang", image: bang, id: 2},
+                {title: "Curls", image: curls, id: 3}, 
+                {title: "Elegant", image: elegant, id: 4},
+                {title: "Fancy", image: fancy, id: 5},
+                {title: "Quiff", image: quiff, id: 6},
+                {title: "Short", image: short, id: 7}
+            ]
+        },
+        
+        {
+            names: [
+                {title: "Default", image: normalEars,id: 1},
+                {title: "Backward", image: backwardEars, id: 2},
+                {title: "Forward", image: forwardEars, id: 3}, 
+            ]
+        },
+
+        {
+            names: [
+                {title: "Default", image: normalEyes,id: 1},
+                {title: "Angry", image: angryEyes, id: 2},
+                {title: "Naughty", image: naughtyEyes, id: 3}, 
+                {title: "Panda", image: pandaEyes, id: 4},
+                {title: "Smart", image: smartEyes, id: 5},
+                {title: "Star", image: starEyes, id: 6},
+            ]
+        },
+
+        {
+            names: [
+                {title: "Default", image: normalMouth,id: 1},
+                {title: "Astonished", image: astonished, id: 2},
+                {title: "Eating", image: eating, id: 3}, 
+                {title: "Laugh", image: laugh, id: 4},
+                {title: "Tongue", image: tongue, id: 5}
+            ]
+        },
+
+        {
+            names: [
+                {title: "Default", image: normalNeck,id: 1},
+                {title: "Backward", image: backwardNeck, id: 2},
+                {title: "Forward", image: forwardNeck, id: 3}, 
+                {title: "Thick", image: thickNeck, id: 4},
+            ]
+        },
+
+        { 
+            names: [
+                {title: "Default", image: normalLeg,id: 1},
+                {title: "Bubble Tea", image: bubbleTea, id: 2},
+                {title: "Cookie", image: cookie, id: 3}, 
+                {title: "Game Console", image: gameConsole, id: 4},
+                {title: "Backward", image: backwardLeg, id: 5},
+                {title: "Forward", image: forwardLeg, id: 6},
+            ]
+        },
+
+        {
+            names: [
+                {title: "Earings", image: earings,id: 1},
+                {title: "Flower", image: flower, id: 2},
+                {title: "Glasses", image: glasses, id: 3}, 
+                {title: "Headphone", image: headphone, id: 4}
+            ]
+        },
+
+        {
+            names: [
+                {title: "Blue 50", image: blue50,id: 1},
+                {title: "Blue 60", image: blue60, id: 2},
+                {title: "Blue 70", image: blue70, id: 3}, 
+                {title: "Dark Blue 30", image: darkblue30, id: 4},
+                {title: "Dark Blue 50", image: darkblue50, id: 5},
+                {title: "Dark Blue 70", image: darkblue70, id: 6},
+                {title: "Green 50", image: green50, id: 7},
+                {title: "Green 60", image: green60, id: 8},
+                {title: "Green 70", image: green70, id: 9},
+                {title: "Grey 40", image: grey40, id: 10},
+                {title: "Grey 70", image: grey70, id: 11},
+                {title: "Grey 80", image: grey80, id: 12},
+                {title: "Red 50", image: red50, id: 13},
+                {title: "Red 60", image: red60, id: 14},
+                {title: "Red 70", image: red70, id: 15},
+                {title: "Yellow 50", image: yellow50, id: 16},
+                {title: "Yellow 60", image: yellow60, id: 17},
+                {title: "Yellow 70", image: yellow70, id: 18},
+            ]
+        }
     ]
 
-    const accessories = [
-        earings,
-        flower,
-        glasses,
-        headphone
-    ]
-
-    const earType = [
-        normalEars,
-        backwards,
-        forward
-    ]
-
-    const eyeType = [
-        normalEyes,
-        angryEyes,
-        naughtyEyes,
-        pandaEyes,
-        smartEyes,
-        starEyes
-    ]
-
-    const hairType = [
+    const [style, setStyle] = useState(0);
+    const [feature, setFeature] = useState("");
+    const currentFeature = [
         normalHair,
-        bang,
-        curls,
-        elegant,
-        fancy,
-        quiff,
-        short
-    ]
-
-    const legType = [
-        normalLeg,
-        bubbleTea,
-        cookie,
-        gameConsole,
-        backwardLeg,
-        forwardLeg
-    ]
-
-    const mouthType = [
+        normalEars,
+        normalEyes,
         normalMouth,
-        astonished,
-        eating,
-        laugh,
-        tongue
-    ]
-
-    const neckType = [
         normalNeck,
-        backwardNeck,
-        forwardNeck,
-        thickNeck
+        normalLeg,
+        earings,
+        blue50
     ]
 
-    // console.log(bgImages.length - 1)
-    const [bgImg, setBgImg] = useState(0);
-    const [acc, setAcc] = useState(0);
-    const [ears, setEars] = useState(0);
-    const [eyes, setEyes] = useState(0);
-    const [hair, setHair] = useState(0);
-    const [leg, setLeg] = useState(0);
-    const [mouth, setMouth] = useState(0);
-    const [neck, setNeck] = useState(0);
-
-    const changeBg = () => {
-        if (bgImg === bgImages.length - 1) setBgImg(bgImg * 0);
-        else setBgImg(bgImg + 1);
-    };
-
-    const changeAcc = () => {
-        if (acc === accessories.length - 1) setAcc(acc * 0);
-        else setAcc(acc + 1);
+    const selectHair = () => {
+        setStyle(0);
     }
 
-    const changeEars = () => {
-        if (ears === earType.length - 1) setEars(ears * 0);
-        else setEars(ears + 1);
+    const selectEars = () => {
+        setStyle(1);
     }
 
-    const changeEyes = () => {
-        if (eyes === eyeType.length - 1) setEyes(eyes * 0);
-        else setEyes(eyes + 1);
+    const selectEyes = () => {
+        setStyle(2);
     }
 
-    const changeHair = () => {
-        if (hair === hairType.length - 1) setHair(hair * 0);
-        else setHair(hair + 1);
+    const selectMouth = () => {
+        setStyle(3);
     }
 
-    const changeLeg = () => {
-        if (leg === legType.length - 1) setLeg(leg * 0);
-        else setLeg(leg + 1);
+    const selectNeck = () => {
+        setStyle(4);
     }
 
-    const changeMouth = () => {
-        if (mouth === mouthType.length - 1) setMouth(mouth * 0);
-        else setMouth(mouth + 1);
+    const selectLeg = () => {
+        setStyle(5);
     }
 
-    const changeNeck = () => {
-        if (neck === neckType.length - 1) setNeck(neck * 0);
-        else setNeck(neck + 1);
+    const selectAccessories = () => {
+        setStyle(6);
+    }
+
+    const selectBg = () => {
+        setStyle(7);
     }
 
     return (
         <>
             <h1 className="text-3xl">ALPACA GENERATOR</h1>
-            <div className="">
-                <div className="w-60 md:w-80 relative">
+            <div className="flex w-full h-2/3">
+                <div className="w-60 md:w-96 relative">
                     <img 
-                        className="w-full"
-                        src={bgImages[bgImg]}
-                        alt="background image" />
-
-                    <img 
-                        className="absolute top-0"
-                        src={ accessories[acc] } 
-                        alt="alpaca accessories" />
-                    
-                    <img 
-                        className="absolute top-0"
-                        src= { earType[ears] } 
-                        alt="alpaca ears" />
-
-                    <img 
-                        className="absolute top-2"
-                        src= { eyeType[eyes] } 
-                        alt="alpaca eyes" />
-
-                    <img 
-                        className="absolute top-1 right-2"
-                        src={ hairType[hair] }
+                        className="absolute z-20"
+                        src={ currentFeature[0] }
                         alt="alpaca hair" />
 
                     <img 
-                        className="absolute bottom-0"
-                        src={ legType[leg] }
+                        className="absolute z-10 top-0"
+                        src={ currentFeature[1] } 
+                        alt="alpaca ears" />
+                    
+                    <img 
+                        className="absolute z-20 top-0"
+                        src= { currentFeature[2] } 
+                        alt="alpaca eyes" />
+
+                    <img 
+                        className="absolute z-20 top-2"
+                        src= { currentFeature[3] } 
+                        alt="alpaca mouth" />
+
+                    <img 
+                        className="absolute z-10 bottom-0"
+                        src={ currentFeature[4] }
+                        alt="alpaca neck" />
+
+                    <img 
+                        className="absolute z-10 bottom-0"
+                        src={ currentFeature[5] }
                         alt="alpaca leg" />
+
+                    <img 
+                        className="absolute z-10 bottom-0"
+                        src={ currentFeature[6] }
+                        alt="alpaca accessories" />
+
+                    <img 
+                        className=""
+                        src={ currentFeature[7] }
+                        alt="alpaca background" />
                 </div>
-                <div>
+                <div className="w-1/2">
                     <div>
                         <h4>ACCESSORIZE THE ALPACA</h4>
                         <div>
-                            <button onClick={ changeHair }>Hair</button>
-                            <button onClick={ changeEars }>Ears</button>
-                            <button onClick={ changeEyes }>Eyes</button>
-                            <button onClick={ changeMouth }>Mouth</button>
-                            <button onClick={ changeNeck }>Neck</button>
-                            <button onClick={ changeLeg }>Leg</button>
-                            <button onClick={ changeAcc }>Accessories</button>
-                            <button onClick={ changeBg }>Background</button>
+                            <button onClick={ selectHair }>Hair</button>
+                            <button onClick={ selectEars }>Ears</button>
+                            <button onClick={ selectEyes }>Eyes</button>
+                            <button onClick={ selectMouth }>Mouth</button>
+                            <button onClick={ selectNeck }>Neck</button>
+                            <button onClick={ selectLeg }>Leg</button>
+                            <button onClick={ selectAccessories }>Accessories</button>
+                            <button onClick={ selectBg }>Background</button>
                         </div>
                     </div>
                     <div>
                         <h4>STYLE</h4>
+                        <ButtonRender 
+                            parts={ parts[style] } 
+                            setFeature={ setFeature } 
+                            feature={ feature }
+                            style={ style }
+                            currentFeature = { currentFeature } 
+                        />
                     </div>
                 </div>
             </div>
         </>
     )
+}
+
+const Accessorize = () => {
+    
+}
+
+const ButtonRender = ({ parts, feature, style, currentFeature }) => {
+    const changeFeature = (button) => {
+        console.log(currentFeature[style]);
+        // setFeature(button);
+        currentFeature[style] = button;
+    }
+
+    const buttons = parts.names.map(item => 
+        <button key={item.id} onClick={ () => changeFeature(item.image) } >{ item.title }</button>
+    )
+    
+    return (
+        <div >{ buttons }</div>
+    );
 }
 
 export default alpacaPage;
