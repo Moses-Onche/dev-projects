@@ -17,6 +17,7 @@ import red70 from "./assets/red70.png"
 import yellow50 from "./assets/yellow50.png"
 import yellow60 from "./assets/yellow60.png"
 import yellow70 from "./assets/yellow70.png"
+import nose from "./assets/nose.png"
 
 // Accessories
 import earings from "./assets/accessories/earings.png"
@@ -166,16 +167,24 @@ const alpacaPage = () => {
     ]
 
     const [style, setStyle] = useState(0);
-    const [feature, setFeature] = useState("");
+    const [currentHair, setCurrentHair] = useState(normalHair);
+    const [currentEars, setCurrentEars] = useState(normalEars);
+    const [currentEyes, setCurrentEyes] = useState(normalEyes);
+    const [currentMouth, setCurrentMouth] = useState(normalMouth);
+    const [currentNeck, setCurrentNeck] = useState(normalNeck);
+    const [currentLeg, setCurrentLeg] = useState(normalLeg);
+    const [currentAcc, setCurrentAcc] = useState(earings);
+    const [currentBg, setCurrentBg] = useState(blue50);
+
     const currentFeature = [
-        normalHair,
-        normalEars,
-        normalEyes,
-        normalMouth,
-        normalNeck,
-        normalLeg,
-        earings,
-        blue50
+        setCurrentHair,
+        setCurrentEars,
+        setCurrentEyes,
+        setCurrentMouth,
+        setCurrentNeck,
+        setCurrentLeg,
+        setCurrentAcc,
+        setCurrentBg
     ]
 
     const selectHair = () => {
@@ -216,43 +225,48 @@ const alpacaPage = () => {
             <div className="flex w-full h-2/3">
                 <div className="w-60 md:w-96 relative">
                     <img 
-                        className="absolute z-20"
-                        src={ currentFeature[0] }
+                        className="absolute z-30"
+                        src={ currentHair }
                         alt="alpaca hair" />
 
                     <img 
                         className="absolute z-10 top-0"
-                        src={ currentFeature[1] } 
+                        src={ currentEars } 
                         alt="alpaca ears" />
                     
                     <img 
-                        className="absolute z-20 top-0"
-                        src= { currentFeature[2] } 
+                        className="absolute z-40 top-0"
+                        src= { currentEyes } 
                         alt="alpaca eyes" />
 
                     <img 
                         className="absolute z-20 top-2"
-                        src= { currentFeature[3] } 
+                        src= { nose } 
+                        alt="alpaca mouth" />
+
+                    <img 
+                        className="absolute z-20 top-2"
+                        src= { currentMouth } 
                         alt="alpaca mouth" />
 
                     <img 
                         className="absolute z-10 bottom-0"
-                        src={ currentFeature[4] }
+                        src={ currentNeck }
                         alt="alpaca neck" />
 
                     <img 
                         className="absolute z-10 bottom-0"
-                        src={ currentFeature[5] }
+                        src={ currentLeg }
                         alt="alpaca leg" />
 
                     <img 
-                        className="absolute z-10 bottom-0"
-                        src={ currentFeature[6] }
+                        className="absolute z-10 top-4"
+                        src={ currentAcc }
                         alt="alpaca accessories" />
 
                     <img 
                         className=""
-                        src={ currentFeature[7] }
+                        src={ currentBg }
                         alt="alpaca background" />
                 </div>
                 <div className="w-1/2">
@@ -273,8 +287,6 @@ const alpacaPage = () => {
                         <h4>STYLE</h4>
                         <ButtonRender 
                             parts={ parts[style] } 
-                            setFeature={ setFeature } 
-                            feature={ feature }
                             style={ style }
                             currentFeature = { currentFeature } 
                         />
@@ -285,15 +297,9 @@ const alpacaPage = () => {
     )
 }
 
-const Accessorize = () => {
-    
-}
-
-const ButtonRender = ({ parts, feature, style, currentFeature }) => {
+const ButtonRender = ({ parts, style, currentFeature }) => {
     const changeFeature = (button) => {
-        console.log(currentFeature[style]);
-        // setFeature(button);
-        currentFeature[style] = button;
+        currentFeature[style](button);
     }
 
     const buttons = parts.names.map(item => 
