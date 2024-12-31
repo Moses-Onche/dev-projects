@@ -221,11 +221,12 @@ const alpacaPage = () => {
 
     return (
         <>
-            <h1 className="text-3xl">ALPACA GENERATOR</h1>
-            <div className="flex w-full h-2/3">
-                <div className="w-60 md:w-96 relative">
+            <h1 className="ml-6 text-4xl">ALPACA GENERATOR</h1>
+            
+            <div className="flex flex-col md:flex-row w-full h-2/3 ml-6">
+                <div className="w-4/5 sm:w-96 relative">
                     <img 
-                        className="absolute z-30"
+                        className="absolute z-30 right-1"
                         src={ currentHair }
                         alt="alpaca hair" />
 
@@ -260,7 +261,7 @@ const alpacaPage = () => {
                         alt="alpaca leg" />
 
                     <img 
-                        className="absolute z-10 top-4"
+                        className="absolute z-10 top-3"
                         src={ currentAcc }
                         alt="alpaca accessories" />
 
@@ -269,7 +270,7 @@ const alpacaPage = () => {
                         src={ currentBg }
                         alt="alpaca background" />
                 </div>
-                <div className="w-1/2">
+                <div className="sm:ml-16 w-4/5">
                     <div>
                         <h4>ACCESSORIZE THE ALPACA</h4>
                         <div>
@@ -283,7 +284,7 @@ const alpacaPage = () => {
                             <button onClick={ selectBg }>Background</button>
                         </div>
                     </div>
-                    <div>
+                    <div className="mt-8">
                         <h4>STYLE</h4>
                         <ButtonRender 
                             parts={ parts[style] } 
@@ -293,6 +294,7 @@ const alpacaPage = () => {
                     </div>
                 </div>
             </div>
+            
         </>
     )
 }
@@ -307,7 +309,7 @@ const ButtonRender = ({ parts, style, currentFeature }) => {
     )
     
     return (
-        <div >{ buttons }</div>
+        <div>{ buttons }</div>
     );
 }
 
