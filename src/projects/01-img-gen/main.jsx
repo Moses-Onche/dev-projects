@@ -294,6 +294,10 @@ const alpacaPage = () => {
                     </div>
                 </div>
             </div>
+            <div className="ml-6 mt-6 w-1/4 flex justify-between border border-red-400">
+                <button>Randomize</button>
+                <button>Download</button>
+            </div>
             
         </>
     )
