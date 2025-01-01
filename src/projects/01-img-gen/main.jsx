@@ -219,12 +219,33 @@ const alpacaPage = () => {
         setStyle(7);
     }
 
+    // Generate randomized features
+    const randomizeFeature = (parts) => {
+        // console.log("Hello");
+        let randomHair = Math.trunc(Math.random() * 7);
+        let randomEars = Math.trunc(Math.random() * 3);
+        let randomEyes = Math.trunc(Math.random() * 6);
+        let randomMouth = Math.trunc(Math.random() * 5);
+        let randomNeck = Math.trunc(Math.random() * 4);
+        let randomLeg = Math.trunc(Math.random() * 6);
+        let randomAcc = Math.trunc(Math.random() * 4);
+        let randomBg = Math.trunc(Math.random() * 18);
+        setCurrentHair(parts[0].names[randomHair].image);
+        setCurrentEars(parts[1].names[randomEars].image);
+        setCurrentEyes(parts[2].names[randomEyes].image);
+        setCurrentMouth(parts[3].names[randomMouth].image);
+        setCurrentNeck(parts[4].names[randomNeck].image);
+        setCurrentLeg(parts[5].names[randomLeg].image);
+        setCurrentAcc(parts[6].names[randomAcc].image);
+        setCurrentBg(parts[7].names[randomBg].image);
+    }
+
     return (
         <>
             <h1 className="ml-6 text-4xl">ALPACA GENERATOR</h1>
             
             <div className="flex flex-col md:flex-row w-full h-2/3 ml-6">
-                <div className="w-4/5 sm:w-96 relative">
+                <div className="w-4/5 h-max sm:w-96 relative">
                     <img 
                         className="absolute z-30 right-1"
                         src={ currentHair }
@@ -262,6 +283,7 @@ const alpacaPage = () => {
 
                     <img 
                         className="absolute z-10 top-3"
+                        id="accessories"
                         src={ currentAcc }
                         alt="alpaca accessories" />
 
@@ -294,8 +316,8 @@ const alpacaPage = () => {
                     </div>
                 </div>
             </div>
-            <div className="ml-6 mt-6 w-1/4 flex justify-between border border-red-400">
-                <button>Randomize</button>
+            <div className="ml-6 mt-6 w-1/4 flex justify-between">
+                <button onClick={ () => randomizeFeature(parts) }>Randomize</button>
                 <button>Download</button>
             </div>
             
