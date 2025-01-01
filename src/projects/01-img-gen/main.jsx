@@ -221,7 +221,6 @@ const alpacaPage = () => {
 
     // Generate randomized features
     const randomizeFeature = (parts) => {
-        // console.log("Hello");
         let randomHair = Math.trunc(Math.random() * 7);
         let randomEars = Math.trunc(Math.random() * 3);
         let randomEyes = Math.trunc(Math.random() * 6);
@@ -240,12 +239,28 @@ const alpacaPage = () => {
         setCurrentBg(parts[7].names[randomBg].image);
     }
 
+    const downloadImage = async () => {
+        const alpacaArt = document.getElementById("download-image");
+        canvas = await html2canvas(alpacaArt);
+        data = canvas.toDataURL('image/png');
+        link = document.createElement('a');
+
+        link.href = data;
+        link.download = "alpaca.png";
+
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+
     return (
         <>
             <h1 className="ml-6 text-4xl">ALPACA GENERATOR</h1>
-            
-            <div className="flex flex-col md:flex-row w-full h-2/3 ml-6">
-                <div className="w-4/5 h-max sm:w-96 relative">
+            <a href="https://www.github.com/Moses-Onche" className="ml-6 text-slate-900">by @meo_joule</a>
+            <div className="flex flex-col md:flex-row w-full h-2/3 ml-6 mt-4">
+                <div 
+                    className="w-4/5 h-max sm:w-96 relative"
+                    id="download-image">
                     <img 
                         className="absolute z-30 right-1"
                         src={ currentHair }
@@ -282,7 +297,7 @@ const alpacaPage = () => {
                         alt="alpaca leg" />
 
                     <img 
-                        className="absolute z-10 top-3"
+                        className="absolute z-30 top-3"
                         id="accessories"
                         src={ currentAcc }
                         alt="alpaca accessories" />
@@ -295,7 +310,7 @@ const alpacaPage = () => {
                 <div className="sm:ml-16 w-4/5">
                     <div>
                         <h4>ACCESSORIZE THE ALPACA</h4>
-                        <div>
+                        <div className="w-2/3">
                             <button onClick={ selectHair }>Hair</button>
                             <button onClick={ selectEars }>Ears</button>
                             <button onClick={ selectEyes }>Eyes</button>
@@ -306,7 +321,7 @@ const alpacaPage = () => {
                             <button onClick={ selectBg }>Background</button>
                         </div>
                     </div>
-                    <div className="mt-8">
+                    <div className="mt-8 w-4/5">
                         <h4>STYLE</h4>
                         <ButtonRender 
                             parts={ parts[style] } 
@@ -317,8 +332,15 @@ const alpacaPage = () => {
                 </div>
             </div>
             <div className="ml-6 mt-6 w-1/4 flex justify-between">
-                <button onClick={ () => randomizeFeature(parts) }>Randomize</button>
-                <button>Download</button>
+                <button
+                    className="text-slate-900 bg-white"   
+                    onClick={ () => randomizeFeature(parts) }
+                    >Random</button>
+
+                <button
+                    className="text-slate-900 bg-white" 
+                    onClick={ downloadImage }
+                    >Download</button>
             </div>
             
         </>
