@@ -69,6 +69,7 @@ import forwardNeck from "./assets/neck/bend-forward.png"
 import thickNeck from "./assets/neck/thick.png"
 
 import { useState } from "react"
+import html2canvas from 'html2canvas';
 
 const alpacaPage = () => {
     const parts = [
@@ -241,9 +242,9 @@ const alpacaPage = () => {
 
     const downloadImage = async () => {
         const alpacaArt = document.getElementById("download-image");
-        canvas = await html2canvas(alpacaArt);
-        data = canvas.toDataURL('image/png');
-        link = document.createElement('a');
+        const canvas = await html2canvas(alpacaArt);
+        const data = canvas.toDataURL('image/png');
+        const link = document.createElement('a');
 
         link.href = data;
         link.download = "alpaca.png";
