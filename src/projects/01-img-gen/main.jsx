@@ -240,6 +240,7 @@ const alpacaPage = () => {
         setCurrentBg(parts[7].names[randomBg].image);
     }
 
+    // Download alpaca image with html2canvas
     const downloadImage = async () => {
         const alpacaArt = document.getElementById("download-image");
         const canvas = await html2canvas(alpacaArt);
@@ -258,6 +259,8 @@ const alpacaPage = () => {
         <>
             <h1 className="ml-6 text-4xl">ALPACA GENERATOR</h1>
             <a href="https://www.github.com/Moses-Onche" className="ml-6 text-slate-900">by @meo_joule</a>
+            
+            {/* Alpaca Image div */}
             <div className="flex flex-col md:flex-row w-full h-2/3 ml-6 mt-4">
                 <div 
                     className="w-4/5 h-max sm:w-96 relative"
@@ -308,6 +311,8 @@ const alpacaPage = () => {
                         src={ currentBg }
                         alt="alpaca background" />
                 </div>
+
+                {/* Button div */}
                 <div className="sm:ml-16 w-4/5">
                     <div>
                         <h4>ACCESSORIZE THE ALPACA</h4>
@@ -332,6 +337,8 @@ const alpacaPage = () => {
                     </div>
                 </div>
             </div>
+
+            {/* Random and Download Buttons */}
             <div className="ml-6 mt-6 w-1/4 flex justify-between">
                 <button
                     className="text-slate-900 bg-white"   
@@ -348,6 +355,7 @@ const alpacaPage = () => {
     )
 }
 
+// Render the style options according to the selected feature
 const ButtonRender = ({ parts, style, currentFeature }) => {
     const changeFeature = (button) => {
         currentFeature[style](button);
