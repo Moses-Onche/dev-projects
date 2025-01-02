@@ -6,17 +6,17 @@ const Home = () => {
   return (
     <>
       <h1>Dev Projects</h1>
-      <a href="https://www.github.com/Moses-Onche" className="ml-14 text-slate-900">by @meo_joule</a>
+      <a href="https://www.github.com/Moses-Onche" className="text-slate-900">by @meo_joule</a>
       <div>
-        <Link to="/alpaca-image-gen">
-          <div>
+        <div className="mt-10">
+          <Link to="/alpaca-image-gen">
             <img src={ alpaca } alt="alpaca image generator" />
             <h3>Alpaca Image Generator</h3>
-            <span>Reactjs</span>
-            <span>TailwindCSS</span>
-            <span>html2canvas</span>
-          </div>
-        </Link>
+          </Link>
+          <span className="bg-slate-900 text-white p-1 mr-1">Reactjs</span>
+          <span className="bg-slate-900 text-white p-1 mr-1">TailwindCSS</span>
+          <span className="bg-slate-900 text-white p-1 mr-1">html2canvas</span>
+        </div>
       </div>
     </>
   )
