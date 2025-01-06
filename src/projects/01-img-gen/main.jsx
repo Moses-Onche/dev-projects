@@ -74,6 +74,7 @@ import html2canvas from 'html2canvas';
 const alpacaPage = () => {
     const parts = [
         {
+            feature: {title: "Hair", id: 1},
             names: [
                 {title: "Default", image: normalHair,id: 1},
                 {title: "Bang", image: bang, id: 2},
@@ -86,6 +87,7 @@ const alpacaPage = () => {
         },
         
         {
+            feature: {title: "Ears", id: 2},
             names: [
                 {title: "Default", image: normalEars,id: 1},
                 {title: "Backward", image: backwardEars, id: 2},
@@ -94,6 +96,7 @@ const alpacaPage = () => {
         },
 
         {
+            feature: {title: "Eyes", id: 3},
             names: [
                 {title: "Default", image: normalEyes,id: 1},
                 {title: "Angry", image: angryEyes, id: 2},
@@ -105,6 +108,7 @@ const alpacaPage = () => {
         },
 
         {
+            feature: {title: "Mouth", id: 4},
             names: [
                 {title: "Default", image: normalMouth,id: 1},
                 {title: "Astonished", image: astonished, id: 2},
@@ -115,6 +119,7 @@ const alpacaPage = () => {
         },
 
         {
+            feature: {title: "Neck", id: 5},
             names: [
                 {title: "Default", image: normalNeck,id: 1},
                 {title: "Backward", image: backwardNeck, id: 2},
@@ -123,7 +128,8 @@ const alpacaPage = () => {
             ]
         },
 
-        { 
+        {
+            feature: {title: "Leg", id: 6},
             names: [
                 {title: "Default", image: normalLeg,id: 1},
                 {title: "Bubble Tea", image: bubbleTea, id: 2},
@@ -135,6 +141,7 @@ const alpacaPage = () => {
         },
 
         {
+            feature: {title: "Accessories", id: 7},
             names: [
                 {title: "Earings", image: earings,id: 1},
                 {title: "Flower", image: flower, id: 2},
@@ -144,6 +151,7 @@ const alpacaPage = () => {
         },
 
         {
+            feature: {title: "Background", id: 8},
             names: [
                 {title: "Blue 50", image: blue50,id: 1},
                 {title: "Blue 60", image: blue60, id: 2},
@@ -316,6 +324,7 @@ const alpacaPage = () => {
                 <div className="sm:ml-16 w-4/5">
                     <div>
                         <h4>ACCESSORIZE THE ALPACA</h4>
+                        <FeatureButtons parts={ parts } />
                         <div className="w-2/3">
                             <button onClick={ selectHair }>Hair</button>
                             <button onClick={ selectEars }>Ears</button>
@@ -352,6 +361,17 @@ const alpacaPage = () => {
             </div>
             
         </>
+    )
+}
+
+// Render the feature buttons
+const FeatureButtons = ({ parts }) => {
+    const buttons = parts.map(item => 
+        <button key={item.id}>{ item.feature }</button>
+    )
+
+    return (
+        <div> { buttons }</div>
     )
 }
 
