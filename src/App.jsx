@@ -26,14 +26,12 @@ function App() {
 
   return (
     <>
-      {/* <Home /> */}
       <Router>
         <Routes>
           <Route path="/" element={ <Home /> } />
           <Route path="/alpaca-image-gen" element={ <AlpacaImgGen /> }/>
         </Routes>
       </Router>
-      {/* <AlpacaImgGen /> */}
     </>
   )
 }
