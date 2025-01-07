@@ -74,7 +74,8 @@ import html2canvas from 'html2canvas';
 const alpacaPage = () => {
     const parts = [
         {
-            feature: {title: "Hair", id: 1},
+            title: "Hair",
+            id: 0,
             names: [
                 {title: "Default", image: normalHair,id: 1},
                 {title: "Bang", image: bang, id: 2},
@@ -87,7 +88,8 @@ const alpacaPage = () => {
         },
         
         {
-            feature: {title: "Ears", id: 2},
+            title: "Ears",
+            id: 1,
             names: [
                 {title: "Default", image: normalEars,id: 1},
                 {title: "Backward", image: backwardEars, id: 2},
@@ -96,7 +98,8 @@ const alpacaPage = () => {
         },
 
         {
-            feature: {title: "Eyes", id: 3},
+            title: "Eyes",
+            id: 2,
             names: [
                 {title: "Default", image: normalEyes,id: 1},
                 {title: "Angry", image: angryEyes, id: 2},
@@ -108,7 +111,8 @@ const alpacaPage = () => {
         },
 
         {
-            feature: {title: "Mouth", id: 4},
+            title: "Mouth",
+            id: 3,
             names: [
                 {title: "Default", image: normalMouth,id: 1},
                 {title: "Astonished", image: astonished, id: 2},
@@ -119,7 +123,8 @@ const alpacaPage = () => {
         },
 
         {
-            feature: {title: "Neck", id: 5},
+            title: "Neck",
+            id: 4,
             names: [
                 {title: "Default", image: normalNeck,id: 1},
                 {title: "Backward", image: backwardNeck, id: 2},
@@ -129,7 +134,8 @@ const alpacaPage = () => {
         },
 
         {
-            feature: {title: "Leg", id: 6},
+            title: "Leg",
+            id: 5,
             names: [
                 {title: "Default", image: normalLeg,id: 1},
                 {title: "Bubble Tea", image: bubbleTea, id: 2},
@@ -141,7 +147,8 @@ const alpacaPage = () => {
         },
 
         {
-            feature: {title: "Accessories", id: 7},
+            title: "Accessories",
+            id: 6,
             names: [
                 {title: "Earings", image: earings,id: 1},
                 {title: "Flower", image: flower, id: 2},
@@ -151,7 +158,8 @@ const alpacaPage = () => {
         },
 
         {
-            feature: {title: "Background", id: 8},
+            title: "Background",
+            id: 7,
             names: [
                 {title: "Blue 50", image: blue50,id: 1},
                 {title: "Blue 60", image: blue60, id: 2},
@@ -195,38 +203,6 @@ const alpacaPage = () => {
         setCurrentAcc,
         setCurrentBg
     ]
-
-    const selectHair = () => {
-        setStyle(0);
-    }
-
-    const selectEars = () => {
-        setStyle(1);
-    }
-
-    const selectEyes = () => {
-        setStyle(2);
-    }
-
-    const selectMouth = () => {
-        setStyle(3);
-    }
-
-    const selectNeck = () => {
-        setStyle(4);
-    }
-
-    const selectLeg = () => {
-        setStyle(5);
-    }
-
-    const selectAccessories = () => {
-        setStyle(6);
-    }
-
-    const selectBg = () => {
-        setStyle(7);
-    }
 
     // Generate randomized features
     const randomizeFeature = (parts) => {
@@ -318,28 +294,23 @@ const alpacaPage = () => {
                         className=""
                         src={ currentBg }
                         alt="alpaca background" />
+
+                    
                 </div>
 
                 {/* Button div */}
                 <div className="sm:ml-16 w-4/5">
-                    <div>
+                    <div className="w-2/3">
                         <h4>ACCESSORIZE THE ALPACA</h4>
-                        <FeatureButtons parts={ parts } />
-                        <div className="w-2/3">
-                            <button onClick={ selectHair }>Hair</button>
-                            <button onClick={ selectEars }>Ears</button>
-                            <button onClick={ selectEyes }>Eyes</button>
-                            <button onClick={ selectMouth }>Mouth</button>
-                            <button onClick={ selectNeck }>Neck</button>
-                            <button onClick={ selectLeg }>Leg</button>
-                            <button onClick={ selectAccessories }>Accessories</button>
-                            <button onClick={ selectBg }>Background</button>
-                        </div>
+                        <FeatureButtons
+                            parts={ parts }
+                            setStyle={ setStyle } />
                     </div>
+
                     <div className="mt-8 w-4/5">
                         <h4>STYLE</h4>
-                        <ButtonRender 
-                            parts={ parts[style] } 
+                        <StyleButtons 
+                            feature={ parts[style] } 
                             style={ style }
                             currentFeature = { currentFeature } 
                         />
@@ -364,10 +335,14 @@ const alpacaPage = () => {
     )
 }
 
-// Render the feature buttons
-const FeatureButtons = ({ parts }) => {
+// Render the feature buttons (Hair, Eyes, e.t.c)
+const FeatureButtons = ({ parts, setStyle }) => {
+    const selectStyle = (button) => {
+        setStyle(button);
+    }
+
     const buttons = parts.map(item => 
-        <button key={item.id}>{ item.feature }</button>
+        <button key={item.id} onClick={ () => selectStyle(item.id) }>{ item.title }</button>
     )
 
     return (
@@ -376,12 +351,12 @@ const FeatureButtons = ({ parts }) => {
 }
 
 // Render the style options according to the selected feature
-const ButtonRender = ({ parts, style, currentFeature }) => {
+const StyleButtons = ({ feature, style, currentFeature }) => {
     const changeFeature = (button) => {
         currentFeature[style](button);
     }
 
-    const buttons = parts.names.map(item => 
+    const buttons = feature.names.map(item => 
         <button key={item.id} onClick={ () => changeFeature(item.image) } >{ item.title }</button>
     )
     
