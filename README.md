@@ -5,7 +5,7 @@ This is a repository of projects I have done on codementor.io to practice and im
 ## Alpaca Image Generator
 ![Alpaca Image Generator](./public/alpaca-img-gen.gif)
 A website to let you customize your own alpaca profile picture (or desired image)
-Live: [Alpaca Image Generator](https//:dev-projects-nine.vercel.app/alpaca-image-gen)
+##### Live: [Alpaca Image Generator](https//:dev-projects-nine.vercel.app/alpaca-image-gen)
 
 ### Requirements
 * Customization panel
